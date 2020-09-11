@@ -18,9 +18,10 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">
+        <span className="logo">Oba's Amazon</span>
         <img
           className="header__logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          // src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
         />
       </Link>
 
@@ -32,7 +33,7 @@ function Header() {
       <div className="header__nav">
         <Link to={!user && '/login'}>
           <div onClick={handleAuthenticaton} className="header__option">
-            <span className="header__optionLineOne">Hello Guest</span>
+            <span className="header__optionLineOne">Hey, {user ? user.email : 'Guest'}</span>
             <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
           </div>
         </Link>
