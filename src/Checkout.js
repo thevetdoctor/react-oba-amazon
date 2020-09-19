@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import FlipMove from 'react-flip-move';
 import "./Checkout.css";
@@ -18,13 +19,13 @@ function Checkout() {
         />
 
         <div>
-          <h3>Hello, {user?.email}</h3>
+          <h3>Hello, {user? user.email : ' Guest'}</h3>
           <h2 className="checkout__title">Your shopping Basket</h2>
 
         <FlipMove>
-          {basket.map(item => (
+          {basket.map((item, idx) => (
             <CheckoutProduct
-              key={item.id}
+              key={idx}
               id={item.id}
               title={item.title}
               image={item.image}

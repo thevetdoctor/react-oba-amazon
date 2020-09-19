@@ -1,24 +1,27 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
+  const history = useHistory();
 
   const handleAuthenticaton = () => {
     if (user) {
       auth.signOut();
     }
   }
-
+  const login = !user ? '/login' : '';
   return (
     <div className="header">
       <Link to="/">
-        <span className="logo">Oba's Amazon</span>
+        <span onClick={e => history.push("/")} className="header__logo">Oba's Amazon</span>
         <img
           className="header__logo"
           // src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
@@ -31,17 +34,19 @@ function Header() {
       </div>
 
       <div className="header__nav">
-        <Link to={!user && '/login'}>
+        <Link to={login}>
           <div onClick={handleAuthenticaton} className="header__option">
             <span className="header__optionLineOne">Hey, {user ? user.email : 'Guest'}</span>
             <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
           </div>
         </Link>
 
+        <Link to="/orders">
         <div className="header__option">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>
         </div>
+        </Link>
 
         <div className="header__option">
           <span className="header__optionLineOne">Your</span>

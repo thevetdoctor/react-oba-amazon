@@ -1,10 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { forwardRef } from 'react';
 import './CheckoutProduct.css'
 import { useStateValue } from "./StateProvider";
 
-// const CheckoutProduct = forwardRef({ id, image, title, price, rating }) => {
+// const CheckoutProduct = forwardRef({ id, image, title, price, rating, hideButton }) => {
 const CheckoutProduct = forwardRef((props, ref) => {
-const { id, image, title, price, rating } = props;
+const { id, image, title, price, rating, hideButton } = props;
 const [{ basket }, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
@@ -32,7 +35,9 @@ const [{ basket }, dispatch] = useStateValue();
                         <p key={i}>🌟</p>
                     ))}
                 </div>
-                <button onClick={removeFromBasket}>Remove from Basket</button>
+                {!hideButton && (
+                    <button onClick={removeFromBasket}>Remove from Basket</button>
+                )}
             </div>
         </div>
     )

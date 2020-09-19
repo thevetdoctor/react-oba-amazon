@@ -15,3 +15,15 @@
   padding: 10px;
   border-bottom: 1px solid lightgray;
 }
+
+@media screen and (max-width: 600px) {
+  .checkout {
+    flex-flow: column;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .checkout__right {
+    align-self: center;
+  }
+}

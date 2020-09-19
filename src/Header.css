@@ -1,11 +1,16 @@
 .header {
   height: 60px;
+  width: 100%;
   display: flex;
   align-items: center;
   background-color: #131921;
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+a {
+  text-decoration: none;
 }
 
 .logo {
@@ -17,10 +22,13 @@
 }
 
 .header__logo {
-  width: 100px;
-  object-fit: contain;
-  margin: 0 20px;
-  margin-top: 18px;
+  color: #fff;
+  font-family: cursive;
+  font-size: 1.3em;
+  /* width: 100px;÷ */
+  /* object-fit: contain; */
+  margin: 0 5px;
+  /* margin-top: 18px; */
 }
 
 .header__search {
@@ -35,12 +43,14 @@
   padding: 10px;
   border: none;
   width: 100%;
+  border-radius: 5px 0 0 5px;
 }
 
 .header__searchIcon {
   padding: 5px;
   height: 22px !important;
-  background-color: #cd9042;
+  background-color: #fff;
+  border-radius:  0 5px 5px 0;
 }
 
 .header__optionLineOne {

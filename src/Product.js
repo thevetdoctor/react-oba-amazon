@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from "react";
 import "./Product.css";
 import { useStateValue } from "./StateProvider";

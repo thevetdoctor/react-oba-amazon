@@ -8,6 +8,8 @@
 
 .home__row {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
   z-index: 1;
   margin-left: 5px;
   margin-right: 5px;
@@ -16,6 +18,18 @@
 .home__image {
   width: 100%;
   z-index: -1;
-  margin-bottom: -150px;
+  margin-bottom: -250px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+@media screen and (max-width: 600px) {
+  .home__row {
+    padding-top: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home__image {
+  margin-bottom: -150px;
+  }
 }

@@ -4,13 +4,15 @@
   align-items: center;
   justify-content: flex-end;
   margin: 10px;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
   max-height: 400px;
   min-width: 100px;
   background-color: white;
+  border-radius: 10px;
   z-index: 1;
 }
+
 
 .product__rating {
   display: flex;
@@ -29,6 +31,13 @@
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
+  border-radius: 6px;
+}
+
+.product > button:hover {
+  background: lightgray;
+  color: #111;
+  font-weight: 500;
 }
 
 .product__price {
@@ -38,4 +47,15 @@
 .product__info {
   height: 100px;
   margin-bottom: 15px;
+}
+
+@media screen and (max-width: 400px) {
+  .product {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 760px) {
+  .product {
+    width: 30%;
+  }
 }
