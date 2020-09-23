@@ -27,11 +27,14 @@
 
 .product > button {
   background: #f0c14b;
-  border: 1px solid;
+  /* border: 1px solid; */
   margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
+  /* border-color: #a88734 #9c7e31 #846a29; */
   color: #111;
   border-radius: 6px;
+  border: none;
+  padding: 3px 6px;
+  font-size: .8em;
 }
 
 .product > button:hover {

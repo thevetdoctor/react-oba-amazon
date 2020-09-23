@@ -7,8 +7,31 @@ import { useStateValue } from "./StateProvider";
 
 // const CheckoutProduct = forwardRef({ id, image, title, price, rating, hideButton }) => {
 const CheckoutProduct = forwardRef((props, ref) => {
-const { id, image, title, price, rating, hideButton } = props;
+const { id, image, count, title, price, rating, hideButton } = props;
 const [{ basket }, dispatch] = useStateValue();
+
+    const addToBasket = () => {
+        // dispatch the item into the data layer
+        dispatch({
+        type: "ADD_TO_BASKET",
+        item: {
+            id,
+            count,
+            title,
+            image,
+            price,
+            rating,
+        },
+        });
+    };
+
+    const reduceFromBasket = () => {
+        // remove the item from the basket
+        dispatch({
+            type: 'REDUCE_FROM_BASKET',
+            id: id,
+        })
+    }
 
     const removeFromBasket = () => {
         // remove the item from the basket
@@ -35,6 +58,11 @@ const [{ basket }, dispatch] = useStateValue();
                         <p key={i}>🌟</p>
                     ))}
                 </div>
+                    <p className="checkoutProduct__count">
+                        <span onClick={reduceFromBasket}>-</span>
+                        <span>{count}</span>
+                        <span onClick={addToBasket}>+</span>
+                        </p>
                 {!hideButton && (
                     <button onClick={removeFromBasket}>Remove from Basket</button>
                 )}

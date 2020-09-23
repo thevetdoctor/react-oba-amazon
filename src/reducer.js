@@ -7,52 +7,32 @@ export const initialState = {
 
 // Selector
 export const getBasketTotal = (basket) => 
-  basket?.reduce((amount, item) => item.price + amount, 0);
+  basket?.reduce((amount, item) => (item.price * item.count) + amount, 0);
 
 export const getBasketCount = (basket) => 
   basket?.reduce((amount, item) => item.count + amount, 0);
 
-  export const sortBasket = (basket) => {
-    let count = {};
-    let bask = [];
-    for(let i = 0; i < basket.length; i++) {
-      let prop = basket[i].id;
-      // count[prop] = count[prop] ? count[prop] + 1 : 1;
-      if(!count[prop]) {
-        bask.push(basket[i]);
-        count[prop] = 1;
-      } else {
-        count[prop] += 1;
-      let index = bask.findIndex((x) => x.id === basket[i].id);
-      bask[index].count +=1;
-      console.log(bask[index]);
-      }
-    // console.log(count, bask);
-    }
-    console.log(bask);
-    return bask;
-  }
+ 
 
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
     case "ADD_TO_BASKET":
-      // const index1 = state.basket.findIndex(
-      //   (basketItem) => basketItem.id === action.item.id
-      // );
-      // let newBasket1 = [...state.basket];
-
-      // if (index1 >= 0) {
-      //   let currentCount = newBasket1[index1];
-      //   console.log(index1, currentCount, newBasket1);
-      //   newBasket1.splice(index1, 1);
-      //   // action.item.count = currentCount + 1;
-      //   newBasket1.push(action.item);
-      // }
+      const basketClone = [...state.basket];
+      const idx = basketClone.findIndex((item) => item.id === action.item.id);
+      console.log(action.item.count, idx);
+      if(idx >= 0) {
+        basketClone[idx].count = basketClone[idx].count + 1;
+        return {
+          ...state,
+          basket: basketClone
+        }
+      } else {
       return {
         ...state,
         basket: [...state.basket, action.item],
       };
+    }
       
     case "EMPTY_BASKET":
     return {
@@ -60,15 +40,17 @@ const reducer = (state, action) => {
       basket: []
     };
 
-    case "REMOVE_FROM_BASKET":
+    case "REDUCE_FROM_BASKET":
       const index = state.basket.findIndex(
         (basketItem) => basketItem.id === action.id
       );
+
       let newBasket = [...state.basket];
 
-      if (index >= 0) {
+      if (index >= 0 && newBasket[index].count < 2) {
         newBasket.splice(index, 1);
-
+      } else if(index >= 0) {
+        newBasket[index].count = newBasket[index].count - 1;
       } else {
         console.warn(
           `Cant remove product (id: ${action.id}) as its not in basket!`
@@ -78,6 +60,26 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: newBasket
+      }
+
+    case "REMOVE_FROM_BASKET":
+      const index1 = state.basket.findIndex(
+        (basketItem) => basketItem.id === action.id
+      );
+
+      let newBasket1 = [...state.basket];
+
+      if (index1 >= 0) {
+        newBasket1.splice(index1, 1);
+      } else {
+        console.warn(
+          `Cant remove product (id: ${action.id}) as its not in basket!`
+        )
+      }
+
+      return {
+        ...state,
+        basket: newBasket1
       }
     
     case "SET_USER":
@@ -99,3 +101,23 @@ const reducer = (state, action) => {
 };
 
 export default reducer;
+
+ // export const sortBasket = (basket) => {
+  //   let count = {};
+  //   let bask = [];
+  //   let clonedBasket = [...basket];
+
+  //   for(let i = 0; i < clonedBasket.length; i++) {
+  //     let prop = clonedBasket[i].id;
+  //     if(!count[prop]) {
+  //       bask.push(clonedBasket[i]);
+  //       count[prop] = 1;
+  //     } else {
+  //       count[prop] = count[prop] + 1;
+  //     let index = bask.findIndex((x) => x.id === clonedBasket[i].id);
+  //     bask[index].count = bask[index].count + 1;
+  //     }
+  //   }
+  //   console.log(bask);
+  //   return bask;
+  // }

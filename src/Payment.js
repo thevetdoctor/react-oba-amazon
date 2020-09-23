@@ -109,6 +109,7 @@ function Payment() {
                 <CheckoutProduct
                   key={idx}
                   id={item.id}
+                  count={item.count}
                   title={item.title}
                   image={item.image}
                   price={item.price}
