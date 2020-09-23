@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import "./Home.css";
 import Product from "./Product";
-import data from "./data";
+import { useStateValue } from "./StateProvider";
 
 function Home() {
+  const [{ stock, basket }, dispatch] = useStateValue();
 
   return (
     <div className="home">
@@ -15,10 +17,11 @@ function Home() {
         />
 
     <div className="home__row">
-      {data.data.map((item, idx) => (
+      {stock.map((item, idx) => (
           <Product
             id={item.id}
             key={idx}
+            count={item.count}
             title={item.title}
             price={item.price}
             rating={item.rating}

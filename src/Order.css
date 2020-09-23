@@ -16,3 +16,9 @@
     font-weight: 500;
     text-align: right;
 }
+
+@media screen and (max-width: 400px) {
+    .order {
+        width: 100%;
+    }
+}

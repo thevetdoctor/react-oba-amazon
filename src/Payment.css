@@ -33,3 +33,13 @@
 .payment__address, .payment__items, .payment__details {
     flex: 0.8
 }
+
+@media screen and (max-width: 450px) {
+.payment__section {
+    flex-flow: column;
+    }
+
+.payment__title {
+    margin-bottom: 0.3em;
+}
+}

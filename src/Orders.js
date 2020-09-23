@@ -21,12 +21,11 @@ function  Orders() {
                 data: doc.data()
             })))
         })
-        setOrders(basket);
     } else {
         setOrders([]);
-        setOrders(basket);
     }
-    }, [user, basket]);
+    return () => {};
+    }, [user]);
 
     return (
         <div className="orders">

@@ -2,11 +2,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./Header.css";
-import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
+import { getBasketCount } from "./reducer";
+import Search from "./Search";
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -28,10 +29,7 @@ function Header() {
         />
       </Link>
 
-      <div className="header__search">
-        <input className="header__searchInput" type="text" />
-        <SearchIcon className="header__searchIcon" />
-      </div>
+      <Search />
 
       <div className="header__nav">
         <Link to={login}>
@@ -42,13 +40,13 @@ function Header() {
         </Link>
 
         <Link to="/orders">
-        <div className="header__option">
+        <div className="header__option prime">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>
         </div>
         </Link>
 
-        <div className="header__option">
+        <div className="header__option prime">
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionLineTwo">Prime</span>
         </div>
@@ -57,7 +55,9 @@ function Header() {
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
             <span className="header__optionLineTwo header__basketCount">
-              {basket?.length}
+              <sup>
+              {getBasketCount(basket)}
+              </sup>
             </span>
           </div>
         </Link>

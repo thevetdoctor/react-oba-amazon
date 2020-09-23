@@ -5,10 +5,42 @@ import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
+import { sortBasket } from "./reducer";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
 
+  // const sortedBasket = [];
+  // let empty = basket.map(item => {
+  //   let idx = sortedBasket.indexOf(item.id);
+  //   if(idx >= 0) {
+  //     console.log(item.count);
+  //     item.count += 1;
+  //     return item;
+  //   }
+  //   console.log(item.count);
+  //   sortedBasket.push(item);
+    // return item;
+  // });
+  // for( let i = 0; i < basket.length; i++) {
+
+  // }
+  // basket.map(item => {
+  //   let empty = basket
+  //               .filter(item => item.id)
+  //               .map(item => ({
+  //                 for
+  //               }));
+  //   if(empty.indexOf(item.id) >= 0) {
+  //     item.count += 1;
+  //   } else {
+  //     item.count = 1;
+  //   }
+  //   console.log(empty);
+  //   return item;
+  // });
+  // console.log(basket, sortedBasket, empty);
+  console.log(sortBasket(basket));
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -21,7 +53,7 @@ function Checkout() {
         <div>
           <h3>Hello, {user? user.email : ' Guest'}</h3>
           <h2 className="checkout__title">Your shopping Basket</h2>
-
+    {/* {sortedBasket.length} */}
         <FlipMove>
           {basket.map((item, idx) => (
             <CheckoutProduct
@@ -44,4 +76,4 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default Checkout; 
