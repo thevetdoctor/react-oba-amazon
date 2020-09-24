@@ -1,7 +1,7 @@
 .search {
     display: flex;
     flex: 1;
-    max-width: 40%;
+    /* max-width: 40%; */
     align-items: center;
     border-radius: 24px;
   }
@@ -16,6 +16,7 @@
     border: none;
     width: 100%;
     border-radius: 5px 0 0 5px;
+    /* border-radius: 5px; */
   }
 
   .searchIcon {
@@ -51,4 +52,10 @@
   
   .search__items:hover {
     background-color: aliceblue;
+  }
+
+  @media screen and (min-width: 500px) {
+    .search {
+      max-width: 40%;
+    }
   }

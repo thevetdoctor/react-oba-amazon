@@ -1,7 +1,20 @@
 .orders {
     padding: 20px 80px;
+    display: flex;
+    flex-flow: column;
+    box-sizing: border-box;
 }
 
 .orders > h1 {
     width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+.orders {
+    padding: 10px 30px;
+}
+
+.orders__order {
+    align-self: center;
+    }
 }

@@ -83,11 +83,11 @@ function Payment() {
     <div className="payment">
 
         <div className="payment__container">
-        <h1>
+        <h2>
         Checkout {
           <Link to="/checkout">{basket?.length} item{basket.length > 1 ? "s" : ""}</Link>
         }
-        </h1>
+        </h2>
           <div className="payment__section">
             <div className="payment__title">
               <h3>Delivery Address</h3>

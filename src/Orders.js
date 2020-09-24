@@ -23,17 +23,30 @@ function  Orders() {
         })
     } else {
         setOrders([]);
+        setOrders([
+            {data: {basket}}, 
+            {data: {basket}},
+            {data: {basket}}
+        ]);
     }
     return () => {};
     }, [user]);
 
     return (
         <div className="orders">
-            <h1>Your Orders</h1>
+            <img
+            className="checkout__ad"
+            src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
+            alt=""
+            />
+               
+        <h1>Your Orders</h1>
 
             <div className="orders__order">
-                {orders?.map(order => (
-                    <Order order={order} />
+                {orders?.map((order, idx) => (
+                    <Order 
+                    key={idx}
+                    order={order} />
                 ))}
             </div>
         </div>

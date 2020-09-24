@@ -5,7 +5,8 @@
 }
 
 .checkoutProduct__info {
-    padding-left: 20px
+    padding-left: 20px;
+    justify-items: center;
 }
 
 .checkoutProduct__info > button {
@@ -16,8 +17,8 @@
     color: #111;
     border-radius: 6px;
     border: none;
-    padding: 3px 6px;
-    font-size: .8em;  }
+    padding: 5px 6px;
+    font-size: .9em;  }
 
 
 .checkoutProduct__info > button:hover {

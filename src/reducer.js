@@ -18,21 +18,21 @@ const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
     case "ADD_TO_BASKET":
-      const basketClone = [...state.basket];
-      const idx = basketClone.findIndex((item) => item.id === action.item.id);
-      console.log(action.item.count, idx);
-      if(idx >= 0) {
+      const idx = state.basket.findIndex(
+        (basketItem) => basketItem.id === action.item.id
+        );
+        let basketClone = [...state.basket];
+        if(idx >= 0) {
         basketClone[idx].count = basketClone[idx].count + 1;
-        return {
-          ...state,
-          basket: basketClone
-        }
+        console.log(action.item.count, idx, basketClone[idx]);
       } else {
+        console.log(action.item.count, idx, basketClone[idx]);
+        basketClone.push(action.item);
+      }
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        basket: basketClone,
       };
-    }
       
     case "EMPTY_BASKET":
     return {
@@ -44,9 +44,7 @@ const reducer = (state, action) => {
       const index = state.basket.findIndex(
         (basketItem) => basketItem.id === action.id
       );
-
       let newBasket = [...state.basket];
-
       if (index >= 0 && newBasket[index].count < 2) {
         newBasket.splice(index, 1);
       } else if(index >= 0) {
@@ -73,7 +71,7 @@ const reducer = (state, action) => {
         newBasket1.splice(index1, 1);
       } else {
         console.warn(
-          `Cant remove product (id: ${action.id}) as its not in basket!`
+          `Can't remove product (id: ${action.id}) as its not in basket!`
         )
       }
 

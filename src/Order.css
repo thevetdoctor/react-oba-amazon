@@ -4,6 +4,8 @@
     border: 1px solid lightgray;
     background-color: #fff;
     position: relative;
+    border-radius: 10px;
+    align-self: center;
 }
 
 .order__id {

@@ -24,7 +24,7 @@ function Checkout() {
 
         <div>
           <h3>Hello, {user? user.email : ' Guest'}</h3>
-          <h2 className="checkout__title">Your shopping Basket</h2>
+  <h4 className="checkout__title">Your Shopping Basket {basket?.length ? "" : "is empty!, please pick some products..."}</h4>
     {/* {sortedBasket.length} */}
         <FlipMove>
           {basket.map((item, idx) => (

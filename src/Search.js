@@ -38,6 +38,7 @@ export default function Search() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             />
+        <SearchIcon className="searchIcon" />
             <div className={!results?.length ? "search__results" : "display"}>
               <ul>  {results?.map((search, index) => (
                     <li 
@@ -53,7 +54,6 @@ export default function Search() {
                 }
                 </ul>
             </div>
-        <SearchIcon className="searchIcon" />
         </div>
     )
 }
