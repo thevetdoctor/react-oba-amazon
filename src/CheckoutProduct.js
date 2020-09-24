@@ -58,11 +58,11 @@ const [{ basket }, dispatch] = useStateValue();
                         <p key={i}>🌟</p>
                     ))}
                 </div>
-                    <p className="checkoutProduct__count">
+                    {!hideButton && (<p className="checkoutProduct__count">
                         <span onClick={reduceFromBasket}>-</span>
                         <span>{count}</span>
                         <span onClick={addToBasket}>+</span>
-                        </p>
+                    </p>)}
                 {!hideButton && (
                     <button onClick={removeFromBasket}>Remove from Basket</button>
                 )}
