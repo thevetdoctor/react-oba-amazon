@@ -10,6 +10,14 @@
   border-radius: 3px;
 }
 
+.subtotal span {
+  margin: 0 0 0.6em 1em;
+}
+
+.subtotal > p {
+  margin: 0 0 0.6em 2em;
+}
+
 .subtotal__gift {
   display: flex;
   align-items: center;

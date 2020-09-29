@@ -27,11 +27,14 @@
 }
 
 .payment__title {
-    flex: 0.2
+    flex: 0.2;
 }
 
 .payment__address, .payment__items, .payment__details {
-    flex: 0.8
+    flex: 0.8;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 450px) {

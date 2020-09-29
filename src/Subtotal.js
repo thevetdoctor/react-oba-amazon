@@ -4,32 +4,47 @@ import { useHistory } from "react-router-dom";
 import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "./StateProvider";
-import { getBasketTotal } from "./reducer";
-import { getBasketCount } from "./reducer";
+import { getBasketTotal, getBasketCount } from "./reducer";
 
 function Subtotal() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, discountStatus }, dispatch] = useStateValue();
   const history = useHistory();
 
+  console.log(discountStatus);
+  const giveDiscount = () => {
+    if(!discountStatus) {
+      console.log('hey');
+      dispatch({type: "GIVE_DISCOUNT"})
+    } else {
+      console.log('hi');
+      dispatch({type: "GIVE_DISCOUNT"})
+    }
+  }
+  
+ 
   return (
     <div className="subtotal">
       <CurrencyFormat
         renderText={(value) => (
           <>
             <p>
-              {/* Part of the homework */}
               Subtotal ({getBasketCount(basket)} items): <strong>{value}</strong>
             </p>
             <small className="subtotal__gift">
               <input 
               type="checkbox"
               disabled={!basket?.length}
-              /> This order contains a gift
+              onChange={e => giveDiscount()}
+              defaultChecked={discountStatus ? "checked" : ""}
+              /> 
+              <span>
+                Claim your discount now (10% on all purchases while stock lasts)
+              </span>
             </small>
           </>
         )}
         decimalScale={2}
-        value={getBasketTotal(basket)} // Part of the homework
+        value={discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket)} // Part of the homework
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}

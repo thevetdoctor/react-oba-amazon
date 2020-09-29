@@ -13,7 +13,7 @@ import { db } from "./firebase";
 
 
 function Payment() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user, discountStatus }, dispatch] = useStateValue();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -30,13 +30,13 @@ function Payment() {
     const getClientSecret = async () => {
       const response = await axios({
         method: "POST",
-        url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+        url: `/payments/create?total=${discountStatus ? getBasketTotal(basket) * 90 : getBasketTotal(basket) * 100}`
       });
       setClientSecret(response.data.clientSecret);
     };
 
     getClientSecret();
-  }, [basket])
+  }, [basket, discountStatus])
 
     console.log("The Secret is here", clientSecret);
 
@@ -94,8 +94,8 @@ function Payment() {
             </div>
             <div className="payment__address">
               <p>{ user?.email }</p>
-              <p>Iyana Iyesi, Idiroko Road</p>
-              <p>Sango Ota, Ogun State</p>
+              <p>Your Street Address</p>
+              <p>Your State, Country</p>
             </div>
           </div>
 
@@ -133,7 +133,6 @@ function Payment() {
                         <h3>Order Total: {value}</h3>
                       )}
                       decimalScale={2}
-                      value={getBasketTotal(basket)} // Part of the homework
                       displayType={"text"}
                       thousandSeparator={true}
                       prefix={"$"}

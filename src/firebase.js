@@ -1,22 +1,25 @@
 import firebase from "firebase";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const {REACT_APP_API_KEY, 
+      REACT_APP_AUTH_DOMAIN, 
+      REACT_APP_DATABASE_URL, 
+      REACT_APP_PROJECT_ID, 
+      REACT_APP_STORAGE_BUCKET, REACT_APP_MESSAGING_SENDER_ID, 
+      REACT_APP_APP_ID, 
+      REACT_APP_MEASUREMENT_ID} = process.env;
 
 const firebaseConfig = {
-  // apiKey: "AIzaSyCcPSKlYtpdzBoAC8soeSmIARMzVKzrf5I",
-  // authDomain: "challenge-4b2b2.firebaseapp.com",
-  // databaseURL: "https://challenge-4b2b2.firebaseio.com",
-  // projectId: "challenge-4b2b2",
-  // storageBucket: "challenge-4b2b2.appspot.com",
-  // messagingSenderId: "962418448875",
-  // appId: "1:962418448875:web:f6cce5eeaf819481f661ae",
-
-  apiKey: "AIzaSyDTBSznQ-O29O9EuuXYkShGJHfj7ZoXpgc",
-  authDomain: "oba-dce9d.firebaseapp.com",
-  databaseURL: "https://oba-dce9d.firebaseio.com",
-  projectId: "oba-dce9d",
-  storageBucket: "oba-dce9d.appspot.com",
-  messagingSenderId: "865349714041",
-  appId: "1:865349714041:web:24ab5921d592b7897694a8",
-  measurementId: "G-1DG17HHVL2"
+  apiKey: REACT_APP_API_KEY,
+  authDomain: REACT_APP_AUTH_DOMAIN,
+  databaseURL: REACT_APP_DATABASE_URL,
+  projectId: REACT_APP_PROJECT_ID,
+  storageBucket: REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
+  appId: REACT_APP_APP_ID,
+  measurementId: REACT_APP_MEASUREMENT_ID
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);

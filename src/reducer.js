@@ -2,6 +2,7 @@
 export const initialState = {
   basket: [],
   stock: [],
+  discountStatus: false,
   user: null
 };
 
@@ -11,8 +12,6 @@ export const getBasketTotal = (basket) =>
 
 export const getBasketCount = (basket) => 
   basket?.reduce((amount, item) => item.count + amount, 0);
-
- 
 
 const reducer = (state, action) => {
   console.log(action);
@@ -92,6 +91,12 @@ const reducer = (state, action) => {
         ...state,
         stock: [...searchResults]
       }
+
+    case "GIVE_DISCOUNT":
+        return {
+          ...state,
+          discountStatus: !state.discountStatus
+        }
 
     default:
       return state;
