@@ -1,0 +1,8 @@
+.notfound {
+    background-color: ghostwhite;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    padding: 2em;
+    line-height: 2;
+}

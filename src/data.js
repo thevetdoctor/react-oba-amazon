@@ -1,7 +1,7 @@
 exports.data = [
     {
         id: "12321341",
-        count: 1,
+        count: 0,
         title: "The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback",
         price: 11.96,
         rating: 5,
@@ -9,7 +9,7 @@ exports.data = [
     },
     {
         id: "49538094",
-        count: 1,
+        count: 0,
         title: "Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl",
         price: 239.0,
         rating: 4,
@@ -17,7 +17,7 @@ exports.data = [
     },
     {
         id: "49038508",
-        count: 1,
+        count: 0,
         title: "Special Smart Wrist Watch - Water Resistant",
         price: 199.99,
         rating: 3,
@@ -25,7 +25,7 @@ exports.data = [
     },
     {
         id: "23445930",
-        count: 1,
+        count: 0,
         title: "Amazon Echo (3rd generation) | Smart speaker with Alexa, Charcoal Fabric",
         price: 98.99,
         rating: 5,
@@ -33,7 +33,7 @@ exports.data = [
     },
     {
         id: "32543543",
-        count: 1,
+        count: 0,
         title: "New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver (4th Generation)",
         price: 598.99,
         rating: 4,
@@ -41,7 +41,7 @@ exports.data = [
     },
     {
         id: "90829332",
-        count: 1,
+        count: 0,
         title: "Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440",
         price: 1094.98,
         rating: 4,

@@ -7,6 +7,11 @@ import { useStateValue } from "./StateProvider";
 function Home() {
   const [{ stock, basket }, dispatch] = useStateValue();
 
+  let ids = [];
+  const basketIds = basket.filter(item => ids.indexOf(item.id) < 0);
+
+  const checkBasket = basketIds.map(x => x.id);
+  console.log(checkBasket);
   return (
     <div className="home">
       <div className="home__container">
@@ -26,6 +31,7 @@ function Home() {
             price={item.price}
             rating={item.rating}
             image={item.image}
+            added={checkBasket?.indexOf(item.id) >= 0}
           />
       ))}
         </div>

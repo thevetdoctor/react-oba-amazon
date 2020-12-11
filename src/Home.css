@@ -1,10 +1,16 @@
 .home {
   display: flex;
+  width: 100%;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
   max-width: 1500px;
   box-sizing: border-box;
+  /* bottom: 100px; */
+}
+
+.home__container {
+  margin-bottom: 6em;
 }
 
 .home__row {

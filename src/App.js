@@ -3,13 +3,16 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./Header";
+import Footer from "./Footer";
 import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout";
 import Payment from "./Payment";
 import Login from "./Login";
 import Product from "./Product";
+import ProductItem from "./ProductItem";
 import Orders from "./Orders";
+import NotFound from "./NotFound";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
@@ -57,20 +60,32 @@ function App() {
           <Route path="/orders">
             <Header />
             <Orders />
+            <Footer />
           </Route>
           <Route path="/checkout">
              <Header />
             <Checkout />
+            <Footer />
           </Route>
           <Route path="/payment">
              <Header />
              <Elements stripe={promise}>
              <Payment />
              </Elements>
+             <Footer />
           </Route>
-          <Route path="/">
+          <Route path="/:dyno">
+            <Header />
+            <ProductItem />
+            <Footer />
+          </Route>
+          <Route exact path="/">
             <Header />
             <Home />
+            <Footer />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </div>

@@ -3,6 +3,7 @@
     display: flex;
     flex-flow: column;
     box-sizing: border-box;
+    margin-bottom: 5em;
 }
 
 .orders > h1 {

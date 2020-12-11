@@ -44,7 +44,7 @@ function Subtotal() {
           </>
         )}
         decimalScale={2}
-        value={discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket)} // Part of the homework
+        value={discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket)}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}

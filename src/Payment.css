@@ -1,5 +1,6 @@
 .payment {
     background-color: #fff;
+    margin-bottom: 5em;
 }
 
 .payment__container > h2 {
@@ -28,6 +29,10 @@
 
 .payment__title {
     flex: 0.2;
+}
+
+.payment__address > p:first-child {
+    margin-bottom: 0.5em;
 }
 
 .payment__address, .payment__items, .payment__details {

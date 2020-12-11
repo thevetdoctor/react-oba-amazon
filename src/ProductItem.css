@@ -1,0 +1,7 @@
+.product__item {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+}

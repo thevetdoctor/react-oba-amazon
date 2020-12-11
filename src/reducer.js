@@ -25,6 +25,7 @@ const reducer = (state, action) => {
         basketClone[idx].count = basketClone[idx].count + 1;
         console.log(action.item.count, idx, basketClone[idx]);
       } else {
+        action.item.count = 1;
         console.log(action.item.count, idx, basketClone[idx]);
         basketClone.push(action.item);
       }

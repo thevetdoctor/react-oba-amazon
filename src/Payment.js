@@ -93,7 +93,7 @@ function Payment() {
               <h3>Delivery Address</h3>
             </div>
             <div className="payment__address">
-              <p>{ user?.email }</p>
+              <p><strong>{ user?.email }</strong></p>
               <p>Your Street Address</p>
               <p>Your State, Country</p>
             </div>
@@ -133,6 +133,7 @@ function Payment() {
                         <h3>Order Total: {value}</h3>
                       )}
                       decimalScale={2}
+                      value={discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket)}
                       displayType={"text"}
                       thousandSeparator={true}
                       prefix={"$"}
