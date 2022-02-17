@@ -21,10 +21,10 @@ const firebaseConfig = {
   appId: REACT_APP_APP_ID,
   measurementId: REACT_APP_MEASUREMENT_ID
 };
-
+// console.log(firebaseConfig);
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-const db = firebaseApp.firestore();
+// const db = firebaseApp.firestore();
 const auth = firebase.auth();
 
-export { db, auth };
+export { auth };

@@ -9,6 +9,9 @@
 
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -21,7 +24,9 @@ const isLocalhost = Boolean(
 );
 
 export function register(config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  console.log(config, process.env.PUBLIC_URL);
+  // if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
