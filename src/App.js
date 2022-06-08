@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-empty-pattern */
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Header from "./Header";
 import Footer from "./Footer";
-import Home from "./Home";
+// import Home from "./Home";
 import Pool from './Pool';
 import Kitchen from './Kitchen';
 import Restaurant from './Restaurant';
@@ -19,16 +19,17 @@ import Product from "./Product";
 import ProductItem from "./ProductItem";
 import Orders from "./Orders";
 import NotFound from "./NotFound";
-import { auth } from "./firebase";
-import { useStateValue } from "./StateProvider";
-import { loadStripe } from "@stripe/stripe-js";
 import Board from "./Board";
+
+// import { auth } from "./firebase";
+// import { useStateValue } from "./StateProvider";
+// import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 
-const promise = loadStripe("pk_test_51HReOoBxZFvwuKOrvZhOm1aUaBHBToUElv7sVeTJxdI3bpTgq5DHdMduWbN4lCjwLCbXulLUqDyHG5olKBSPqjsd00ABmHVVRN");
+// const promise = loadStripe("pk_test_51HReOoBxZFvwuKOrvZhOm1aUaBHBToUElv7sVeTJxdI3bpTgq5DHdMduWbN4lCjwLCbXulLUqDyHG5olKBSPqjsd00ABmHVVRN");
 
 function App() {
-  const [{}, dispatch] = useStateValue();
+  // const [{}, dispatch] = useStateValue();
 
   // useEffect(() => {
   //   // will only run once when the app component loads...
@@ -56,7 +57,7 @@ function App() {
   return (
     // BEM
     <Router>
-      <div className="app">
+      <div className="">
         <Switch>
           <Route path="/login">
             <Login />

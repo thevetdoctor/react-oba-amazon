@@ -1,6 +1,33 @@
 .board {
     margin-top: '.1em'; 
     justify-content: 'center';
-    margin: 'auto';
-    width: '90%';
+    /* margin: 'auto'; */
+    width: '100%';
 }
+
+.side-a {
+    display: 'flex';
+    flex-flow: 'row';
+}
+
+.side-b {
+    display: 'flex';
+    flex-flow: 'column';
+}
+
+img {
+    width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+    .board {
+        margin-top: '15em'; 
+        justify-content: 'center';
+        margin: 'auto';
+        width: '100%';
+    }
+    .side-a {
+        display: 'flex';
+        flex-flow: column;
+    }
+  }

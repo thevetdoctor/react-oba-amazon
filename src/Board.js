@@ -1,14 +1,15 @@
 import React from 'react';
+import './Board.css';
 import { Link } from "react-router-dom";
 
 export default function Board() {
     return (
     <div className="board">
-        <div style={{display: 'flex'}}>
+        <div className="side-a">
             <Link to="/restaurant">
                 <img src={require("./images/Banner/rest-frank.jpg")} alt="" />
             </Link>
-            <div style={{display: 'flex', flexFlow: 'column'}}>
+            <div className='side-b'>
                 <Link to="/grillkitchen">
                     <img src={require("./images/Banner/Grill-Kitchen.jpg")} alt="" />
                 </Link>
@@ -17,11 +18,11 @@ export default function Board() {
                 </Link>
             </div>
         </div>
-        <div style={{display: 'flex'}}>
+        <div className="side-a">
             <Link to="/clubspartacuz">
                 <img src={require("./images/Banner/Untitled-1.jpg")} alt="" />
             </Link>
-            <div style={{display: 'flex', flexFlow: 'column'}}>
+            <div className='side-b'>
                 <Link to="/pool">
                     <img src={require("./images/Banner/frank-princess.jpg")} alt="" />
                 </Link>

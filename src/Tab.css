@@ -1,0 +1,26 @@
+.tab {
+    text-align: center;
+    color: rgb(37, 37, 37);
+    /* font-weight: 500; */
+    margin: 10px;
+    position: relative;
+    border: 0px solid #535252;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    padding: 5px;
+  }
+
+
+@media screen and (max-width: 400px) {
+  .tab {
+    text-align: center;
+    color: rgb(37, 37, 37);
+    font-weight: 500;
+    margin: 30px;
+    position: relative;
+    border: 1px solid #535252;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    padding: 5px;
+  }
+}
