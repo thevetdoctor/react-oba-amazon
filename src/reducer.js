@@ -14,7 +14,7 @@ export const getBasketCount = (basket) =>
   basket?.reduce((amount, item) => item.count + amount, 0);
 
 const reducer = (state, action) => {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case "ADD_TO_BASKET":
       const idx = state.basket.findIndex(
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
         let basketClone = [...state.basket];
         if(idx >= 0) {
         basketClone[idx].count = basketClone[idx].count + 1;
-        console.log(action.item.count, idx, basketClone[idx]);
+        // console.log(action.item.count, idx, basketClone[idx]);
       } else {
         action.item.count = 1;
         console.log(action.item.count, idx, basketClone[idx]);

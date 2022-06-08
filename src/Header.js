@@ -25,7 +25,7 @@ function Header() {
         <span onClick={e => history.push("/")} className="header__logo">Princess Luxury Hotels</span>
         <img
           className="header__logo"
-          // src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          src={require('./images/Princess-Luxury.png')}
         />
       </Link>
 

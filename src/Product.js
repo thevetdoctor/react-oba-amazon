@@ -14,7 +14,6 @@ const Product = forwardRef((props, ref) => {
   let { dyno } = useParams(); 
   const {id, count, name, image, price, rating, added } = props;
 
-  console.log(props);
   const addToBasket = () => {
     // dispatch the item into the data layer
     dispatch({

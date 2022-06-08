@@ -11,13 +11,14 @@ export default function ProductItem() {
   let { dyno } = useParams();
   const history = useHistory();
   const item = stock.filter(x => x.id === dyno);
+  console.log(dyno, item)
   if(!item[0]) return <Redirect to="/" />;
 
-  const { id, title, count, image, price, rating } = item[0];
+  const { id, name, count, imageUrl, price, rating } = item[0];
   const statefulStock = basket.filter(
     item => item.id === id
 );
-  console.info(statefulStock, stock, basket);
+  // console.info(statefulStock, stock, basket);
     
     return (
         <div className="product__item">
@@ -26,9 +27,9 @@ export default function ProductItem() {
             </button>
             <Product 
             id={id} 
-            title={title} 
+            name={name} 
             count={count}
-            image={image}
+            image={imageUrl}
             price={price}
             rating={rating}
             added={statefulStock.length}

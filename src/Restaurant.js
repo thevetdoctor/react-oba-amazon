@@ -28,7 +28,7 @@ function Home() {
       <div className="home__container">
         <img
           className="home__image"
-          src={require("./images/lounge/frontview.PNG")}
+          src={require("./images/Banner/rest.JPG")}
           alt=""
         />
         <div className="tabs">
