@@ -14,22 +14,22 @@ app.use(express.json());
 app.get("/", (req, res) => res.status(200).send("<h1>Welcome to Oba @Serverless!</h1>"));
 
 
-app.post("/payments/create", async (req, res) => {
-    const total = req.query.total;
-    console.log("Payment Request received >>>", total);
-    try {
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: total,
-        currency: "usd"
-    });
-      return res.status(201).send({
-        clientSecret: paymentIntent.client_secret
-    });
-    } catch(e) {
-        console.log(e.message);
-        return e.message;
-    }
-});
+// app.post("/payments/create", async (req, res) => {
+//     const total = req.query.total;
+//     console.log("Payment Request received >>>", total);
+//     try {
+//     const paymentIntent = await stripe.paymentIntents.create({
+//         amount: total,
+//         currency: "usd"
+//     });
+//       return res.status(201).send({
+//         clientSecret: paymentIntent.client_secret
+//     });
+//     } catch(e) {
+//         console.log(e.message);
+//         return e.message;
+//     }
+// });
 
 // Listen
 exports.api = functions.https.onRequest(app);

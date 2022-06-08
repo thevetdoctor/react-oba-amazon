@@ -15,9 +15,9 @@ export default function Search() {
 
 
     const searchData = () => {
-        const searchResults = data.data.filter(x => x.title.toLowerCase().includes(query.toLowerCase()));
+        const searchResults = data.data.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
         setResults(searchResults);
-        console.log(query, searchResults);
+        // console.log(query, searchResults);
 
         dispatch({
             type: "SEARCH_STOCK",
@@ -46,7 +46,7 @@ export default function Search() {
                     className="search__items">
                         <Link to="/product">
                             <div className="search__id">
-                            {search.title}
+                            {search.name}
                             </div>
                         </Link>
                     </li>

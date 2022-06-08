@@ -5,15 +5,16 @@ import "./Product.css";
 import { useStateValue } from "./StateProvider";
 import { useHistory, useParams } from "react-router-dom";
 
+const cloudImageUrl = 'https://res.cloudinary.com/thevetdoctor/image/upload/v1654672763/princessluxury';
 
 // function Product({ id, count, title, image, price, rating }) {
 const Product = forwardRef((props, ref) => {
   const [{ basket }, dispatch] = useStateValue();
   const history = useHistory();
   let { dyno } = useParams(); 
-  const {id, count, title, image, price, rating, added } = props;
+  const {id, count, name, image, price, rating, added } = props;
 
-  // console.log(props);
+  console.log(props);
   const addToBasket = () => {
     // dispatch the item into the data layer
     dispatch({
@@ -21,7 +22,7 @@ const Product = forwardRef((props, ref) => {
       item: {
         id,
         count,
-        title,
+        name,
         image,
         price,
         rating,
@@ -41,9 +42,9 @@ const Product = forwardRef((props, ref) => {
   return (
     <div ref={ref} className="product">
       <div className="product__info">
-        <p>{title}</p>
+        <p>{name}</p>
         <p className="product__price">
-          <small>$</small>
+          <b>N</b>
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
@@ -56,15 +57,15 @@ const Product = forwardRef((props, ref) => {
       </div>
 
       <img 
-      src={image} 
-      alt={`ID:${id}`}
+      src={require(`.${image.slice(6)}`)} 
+      alt={image.slice(7)}
       onClick= {e => history.push(`/${id}`)}
       />
     {!added ?
-      <button onClick={addToBasket}>Add to Basket</button>:
+      <button onClick={addToBasket}>Add to Cart</button>:
       <span>
         <small>Already added</small>
-        <button onClick={removeFromBasket}>Remove from Basket ?
+        <button onClick={removeFromBasket}>Remove from Cart ?
         </button>
       </span>
       }

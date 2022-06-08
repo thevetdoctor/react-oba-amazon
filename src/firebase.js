@@ -22,7 +22,7 @@ const firebaseConfig = {
   measurementId: REACT_APP_MEASUREMENT_ID
 };
 // console.log(firebaseConfig);
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 // const db = firebaseApp.firestore();
 const auth = firebase.auth();

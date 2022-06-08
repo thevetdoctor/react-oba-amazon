@@ -43,7 +43,7 @@ const [{ basket }, dispatch] = useStateValue();
 
     return (
         <div ref={ref} className='checkoutProduct'>
-            <img className='checkoutProduct__image' src={image} />
+            <img className='checkoutProduct__image' src={require(`.${image.slice(6)}`)} />
 
             <div className='checkoutProduct__info'>
                 <p className='checkoutProduct__title'>{title}</p>

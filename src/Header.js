@@ -22,7 +22,7 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <span onClick={e => history.push("/")} className="header__logo">Oba's Amazon</span>
+        <span onClick={e => history.push("/")} className="header__logo">Princess Luxury Hotels</span>
         <img
           className="header__logo"
           // src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"

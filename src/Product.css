@@ -83,6 +83,6 @@ button:hover {
 }
 @media screen and (min-width: 760px) {
   .product {
-    width: 30%;
+    width: 20%;
   }
 }

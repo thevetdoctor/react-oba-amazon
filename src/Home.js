@@ -17,23 +17,31 @@ function Home() {
       <div className="home__container">
         <img
           className="home__image"
-          src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+          src={require("./images/lounge/frontview.PNG")}
           alt=""
         />
+        <div className="tabs">
+          <span className="active">SOFTs, ENERGY & YOGHURT</span>
+          <span className="">WINES</span>
+          <span className="">ALCOHOL</span>
+          <span className="">BEER & SMOKE</span>
+          <span className="">COCKTAIL & CHAMPANGE</span>
+        </div>
+        <div className="tag">Princess Luxury Hotels and Tourism has been elegantly crafted and prearranged to achieve a measure of comfortable luxury to satisfy the senses of every guest from all over the world.</div>
 
-    <div className="home__row">
-      {stock.map((item, idx) => (
-          <Product
-            id={item.id}
-            key={idx}
-            count={item.count}
-            title={item.title}
-            price={item.price}
-            rating={item.rating}
-            image={item.image}
-            added={checkBasket?.indexOf(item.id) >= 0}
-          />
-      ))}
+        <div className="home__row">
+          {stock.map((item, idx) => (
+              <Product
+                id={item.id}
+                key={idx}
+                // count={item.count}
+                name={item.name}
+                price={item.price}
+                // rating={item.rating}
+                image={item.imageUrl}
+                added={checkBasket?.indexOf(item.id) >= 0}
+              />
+          ))}
         </div>
       </div>
     </div>
