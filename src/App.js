@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-empty-pattern */
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -22,37 +22,37 @@ import NotFound from "./NotFound";
 import Board from "./Board";
 
 // import { auth } from "./firebase";
-// import { useStateValue } from "./StateProvider";
+import { useStateValue } from "./StateProvider";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 
 // const promise = loadStripe("pk_test_51HReOoBxZFvwuKOrvZhOm1aUaBHBToUElv7sVeTJxdI3bpTgq5DHdMduWbN4lCjwLCbXulLUqDyHG5olKBSPqjsd00ABmHVVRN");
 
 function App() {
-  // const [{}, dispatch] = useStateValue();
+  const [{user}, dispatch] = useStateValue();
 
-  // useEffect(() => {
+  useEffect(() => {
   //   // will only run once when the app component loads...
 
-  //   auth.onAuthStateChanged(authUser => {
-  //     console.log('THE USER IS >>> ', authUser);
+   const authUser = JSON.parse(localStorage.getItem('authUser')) || null;
+      console.log('THE USER IS >>> ', authUser);
 
-  //     if (authUser) {
-  //       // the user just logged in / the user was logged in
+      if (authUser || user) {
+        // the user just logged in / the user was logged in
 
-  //       dispatch({
-  //         type: 'SET_USER',
-  //         user: authUser
-  //       })
-  //     } else {
-  //       // the user is logged out
-  //       dispatch({
-  //         type: 'SET_USER',
-  //         user: null
-  //       })
-  //     }
+        dispatch({
+          type: 'SET_USER',
+          user: authUser
+        })
+      } else {
+        // the user is logged out
+        dispatch({
+          type: 'SET_USER',
+          user: null
+        })
+      }
   //   })
-  // }, [])
+  }, [])
 
   return (
     // BEM

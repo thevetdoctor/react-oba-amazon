@@ -23,7 +23,7 @@ function Checkout() {
         />
 
         <div>
-          <h3>Hello, {user? user.email : ' Guest'}</h3>
+          <h3>Hello, {user? user.username : ' Guest'}</h3>
   <h4 className="checkout__title">Your Shopping Cart {basket?.length ? "" : "is empty!, please pick some products..."}</h4>
     {/* {sortedBasket.length} */}
         <FlipMove>

@@ -7,16 +7,61 @@ import "./Payment.css";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 import { Link, useHistory } from "react-router-dom";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { PaystackButton } from "react-paystack"
+import paystackLogo from "./paystack-logo.jpg";
 import axios from "./axios";
+
+// import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 // import { db } from "./firebase";
 
 
 function Payment() {
   const [{ basket, user, discountStatus }, dispatch] = useStateValue();
+  const publicKey = `${process.env.REACT_APP_PUBLIC_KEY}`
+  const [name, setName] = useState(" ");
+  const [amount, setAmount] = useState(discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket))
+  const [email, setEmail] = useState("thevetdoctor@gmail.com")
+  const [phone, setPhone] = useState("080 6910 0463")
+  const [orderID, setorderID] = useState("")
+  const [custom_field, setCustomField] = useState([]);
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZWVhZTcwNGQtMDQ2My00ZWIwLWExZDUtMGViMjYzYWI4NThkIiwidXNlcm5hbWUiOiJvYmEiLCJlbWFpbCI6InRoZXZldGRvY3RvckBnbWFpbC5jb20iLCJwYXNzd29yZCI6bnVsbCwiaW1hZ2VVcmwiOm51bGwsImJpbyI6bnVsbCwibG9jYXRpb24iOm51bGwsImRvYiI6bnVsbCwibW9iaWxlIjpudWxsLCJzdGF0dXMiOiJiYXNpYyIsInZlcmlmaWVkIjpmYWxzZSwiaXNEZWxldGVkIjpmYWxzZSwiY3JlYXRlZEF0IjoiMjAyMi0wNi0wNVQwNzoyNDowOS45MTBaIiwidXBkYXRlZEF0IjoiMjAyMi0wNi0wNVQwNzoyNDowOS45MTBaIn0sImlhdCI6MTY1NDQxNzQxOX0.7_c7ASm9r5Zv1pSa3JRw96_bpl28Vei2dW7rez5vTHI";
 
-  const stripe = useStripe();
-  const elements = useElements();
+  async function checkoutOrder(orderId) {
+    const res = await fetch(`http://localhost:8000/orders/${orderId}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json', Authorization:`Bearer ${token}`},
+    });
+    const data = await res.json();
+    console.log(data.data);
+    localStorage.setItem('order', JSON.stringify(data.data));
+}
+  const componentProps = {
+    email,
+    amount,
+    metadata: {
+      name,
+      phone,
+      custom_field
+    },
+    publicKey: 'pk_live_4aec163b8f367f258c17f7219cd057efb4f6180a',
+    text: "Pay Now",
+    onSuccess: () =>
+      {
+        alert("Thanks for doing business with us! Come back soon!!");
+        checkoutOrder(orderID);
+      },
+      onClose: () => {
+        alert("Wait! Don't leave :(");
+        checkoutOrder(orderID);
+    },
+  }
+
+  useEffect(() => {
+    // setorderID(JSON.parse(localStorage.getItem('order')).id);
+    console.log(orderID, JSON.parse(localStorage.getItem('order')));
+  }, [orderID]);
+  // const stripe = useStripe();
+  // const elements = useElements();
   const history = useHistory();
 
   const [error, setError] = useState(null);
@@ -25,31 +70,31 @@ function Payment() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const getClientSecret = async () => {
-      const response = await axios({
-        method: "POST",
-        url: `/payments/create?total=${discountStatus ? getBasketTotal(basket) * 90 : getBasketTotal(basket) * 100}`
-      });
-      setClientSecret(response.data.clientSecret);
-    };
+  //   const getClientSecret = async () => {
+  //     const response = await axios({
+  //       method: "POST",
+  //       url: `/payments/create?total=${discountStatus ? getBasketTotal(basket) * 90 : getBasketTotal(basket) * 100}`
+  //     });
+  //     setClientSecret(response.data.clientSecret);
+  //   };
 
-    getClientSecret();
-  }, [basket, discountStatus])
+  //   getClientSecret();
+  // }, [basket, discountStatus])
 
-    console.log("The Secret is here", clientSecret);
+    // console.log("The Secret is here", clientSecret);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
 
     setProcessing(true);
 
-    const payload = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement)
-        }
-      }).then(({ paymentIntent }) => {
+    // const payload = await stripe.confirmCardPayment(clientSecret, {
+    //   payment_method: {
+    //     card: elements.getElement(CardElement)
+    //     }
+    //   }).then(({ paymentIntent }) => {
 
         // db
         // .collection("users")
@@ -62,16 +107,16 @@ function Payment() {
         //   created: paymentIntent.created
         // });
 
-        setSucceeded(true);
-        setError(null);
-        setProcessing(false);
+    //     setSucceeded(true);
+    //     setError(null);
+    //     setProcessing(false);
 
-        dispatch({
-          type: "EMPTY_BASKET"
-        }); 
+    //     dispatch({
+    //       type: "EMPTY_BASKET"
+    //     }); 
 
-        history.replace("/orders")
-    })
+    //     history.replace("/orders")
+    // })
   };
 
   const handleChange = e => {
@@ -124,23 +169,30 @@ function Payment() {
              <div className="payment__title">
               <h3>Payment Method</h3>
             </div>
+            <Link to="/orders">            
+            <div className="pay-btn paystack">
+              <img src={paystackLogo} className="paystack-logo" alt="home-icon" />
+              <PaystackButton className='paystack-button' {...componentProps} />
+            </div>
+            </Link>
             <div className='payment__details'>
               <form onSubmit={handleSubmit}>
-                <CardElement onChange={handleChange} />
+                {/* <CardElement onChange={handleChange} /> */}
                 <div className="payment__priceContainer">
                     <CurrencyFormat
                       renderText={(value) => (
                         <h3>Order Total: {value}</h3>
                       )}
                       decimalScale={2}
-                      value={discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket)}
+                      value={amount}
                       displayType={"text"}
                       thousandSeparator={true}
-                      prefix={"$"}
+                      prefix={"N"}
                     />
                 </div>
-                  <button disabled={processing || disabled || succeeded}> 
-                  <span>{processing ? <p>Processing</p> : "Buy Now" }</span></button>
+                  {/* <button disabled={processing || disabled || succeeded}> 
+                    <span>{processing ? <p>Processing</p> : "Buy Now" }</span>
+                  </button> */}
               </form>
             </div>
           </div>
