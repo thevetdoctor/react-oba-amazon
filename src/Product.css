@@ -35,7 +35,7 @@
 button {
   background: #f0c14b;
   /* border: 1px solid; */
-  margin-top: 10px;
+  margin-top: 5px;
   color: #111;
   align-self: center;
   border-radius: 6px;
@@ -72,7 +72,7 @@ button:hover {
 }
 
 .product__info {
-  height: 100px;
+  height: 50px;
   margin-bottom: 15px;
 }
 

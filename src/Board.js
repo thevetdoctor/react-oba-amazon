@@ -6,29 +6,41 @@ export default function Board() {
     return (
     <div className="board">
         <div className="side-a">
-            <Link to="/restaurant">
-                <img src={require("./images/Banner/rest-frank.jpg")} alt="" />
-            </Link>
+            <div>
+                <Link to="/restaurant">
+                    <img className='board_img' src={require("./images/Banner/rest-frank.jpg")} alt="" />
+                </Link>
+            </div>
             <div className='side-b'>
-                <Link to="/grillkitchen">
-                    <img src={require("./images/Banner/Grill-Kitchen.jpg")} alt="" />
-                </Link>
-                <Link to="/caesarslounge">
-                    <img src={require("./images/Banner/Caesar-Lounge.jpg")} alt="" />
-                </Link>
+                <div>
+                    <Link to="/grillkitchen">
+                        <img className='board_img' src={require("./images/Banner/Grill-Kitchen.jpg")} alt="" />
+                    </Link>
+                </div>
+                <div>
+                    <Link to="/caesarslounge">
+                        <img className='board_img' src={require("./images/Banner/Caesar-Lounge.jpg")} alt="" />
+                    </Link>
+                </div>
             </div>
         </div>
         <div className="side-a">
-            <Link to="/clubspartacuz">
-                <img src={require("./images/Banner/Untitled-1.jpg")} alt="" />
-            </Link>
+            <div>
+                <Link to="/clubspartacuz">
+                    <img className='board_img' src={require("./images/Banner/Untitled-1.jpg")} alt="" />
+                </Link>
+            </div>
             <div className='side-b'>
-                <Link to="/pool">
-                    <img src={require("./images/Banner/frank-princess.jpg")} alt="" />
-                </Link>
-                <Link to="/gardenbar">
-                    <img src={require("./images/Banner/GB-frank.jpg")} alt="" />
-                </Link>
+                <div>
+                    <Link to="/pool">
+                        <img className='board_img' src={require("./images/Banner/frank-princess.jpg")} alt="" />
+                    </Link>
+                </div>
+                <div>
+                    <Link to="/gardenbar">
+                        <img className='board_img' src={require("./images/Banner/GB-frank.jpg")} alt="" />
+                    </Link>
+                </div>
             </div>
         </div>
     </div>

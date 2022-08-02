@@ -15,10 +15,15 @@ export default function Search() {
 
 
     const searchData = () => {
-        const searchResults = data.data.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
+        // const searchResults = data.data.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
+        let searchResults;
+        if(JSON.parse(localStorage.getItem('products')).length) {
+            let cachedStock = JSON.parse(localStorage.getItem('products'));
+            searchResults = cachedStock.filter(x => x.type.toLowerCase().includes(query.toLowerCase()));
+        } else {
+            searchResults = []
+        }
         setResults(searchResults);
-        // console.log(query, searchResults);
-
         dispatch({
             type: "SEARCH_STOCK",
             searchResults

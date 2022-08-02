@@ -7,7 +7,7 @@ import { useStateValue } from "./StateProvider";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
 
-function Home() {
+function Restaurant() {
   const [{ stock, basket }, dispatch] = useStateValue();
 
   let ids = [];
@@ -48,4 +48,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Restaurant;

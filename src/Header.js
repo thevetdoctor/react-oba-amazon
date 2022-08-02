@@ -6,13 +6,20 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { getBasketCount } from "./reducer";
-import Search from "./Search";
+import {FiLogOut} from 'react-icons/fi';
+import {FaArchive} from 'react-icons/fa';
+import { BsCart4 } from "react-icons/bs";
+// import Search from "./Search";
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
   const history = useHistory();
 
   const signOut = () => {
+    dispatch({
+      type: 'SET_USER',
+      user: null
+    })
     localStorage.clear();
   }
 
@@ -30,8 +37,9 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <span onClick={e => history.push("/")} className="header__logo">Princess Luxury Hotels</span>
+        {/* <span onClick={e => history.push("/")} className="header__logo">Princess Luxury Hotels</span> */}
         <img
+          onClick={e => history.push("/")}
           className="logo"
           src={require('./images/Princess-Luxury.png')}
         />
@@ -40,35 +48,38 @@ function Header() {
       {/* <Search /> */}
 
       <div className="header__nav">
-        <Link to={login}>
-          <div onClick={handleAuthenticaton} className="header__option">
-            <span className="header__optionLineOne">Hey, {user ? user.username : 'Guest'}</span>
-            <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
-          </div>
-        </Link>
 
+        {(user?.status === 'basic') && 
         <Link to="/orders">
         <div className="header__option prime">
-          <span className="header__optionLineOne">Returns</span>
+          <span><FaArchive /></span>
+          <span className="header__optionLineTwo">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>
         </div>
-        </Link>
+        </Link>}
 
-        {/* <div className="header__option prime">
-          <span className="header__optionLineOne">Your</span>
-          <span className="header__optionLineTwo">Prime</span>
-        </div> */}
-
+        {(user?.status === 'basic') && 
         <Link to="/checkout">
-          <div className="header__optionBasket">
-            <ShoppingBasketIcon />
+          <div className="header__option">
+            <BsCart4 size={25} />
             <span className="header__optionLineTwo header__basketCount">
               <sup>
               {getBasketCount(basket)}
               </sup>
             </span>
+            {/* <span className="header__optionLineTwo">Cart</span> */}
+          </div>
+        </Link>}
+
+        <Link to={login}>
+          <div onClick={handleAuthenticaton} className="header__option">
+            {/* <span className="header__optionLineOne">Hey, {user ? user.username : 'Guest'}</span> */}
+            <span className="header__optionLineTwo">{user ? 
+                    <span><FiLogOut size={25}/></span>
+                    : 'Sign In'}</span>
           </div>
         </Link>
+
       </div>
     </div>
   );

@@ -34,11 +34,18 @@ const reducer = (state, action) => {
         basket: basketClone,
       };
       
-    case "EMPTY_BASKET":
+    case "UPDATE_BASKET":
+      const { data } = action;
     return {
       ...state,
-      basket: []
+      basket: data
     };
+
+    case "EMPTY_BASKET":
+      return {
+        ...state,
+        basket: []
+      };
 
     case "REDUCE_FROM_BASKET":
       const index = state.basket.findIndex(
@@ -88,6 +95,7 @@ const reducer = (state, action) => {
     
     case "SEARCH_STOCK":
       const { searchResults } = action;
+      // console.info(searchResults);
       return {
         ...state,
         stock: [...searchResults]

@@ -4,37 +4,76 @@
 import React, { forwardRef } from 'react';
 import './CheckoutProduct.css'
 import { useStateValue } from "./StateProvider";
+import { useHistory } from "react-router-dom";
+import { apiUrl } from "./api";
 
 // const CheckoutProduct = forwardRef({ id, image, title, price, rating, hideButton }) => {
 const CheckoutProduct = forwardRef((props, ref) => {
-const { id, image, count, title, price, rating, hideButton } = props;
+const { id, name, image, count, title, price, rating, hideButton } = props;
 const [{ basket }, dispatch] = useStateValue();
+const history = useHistory();
+const token = localStorage.getItem('jwt');
 
+async function makeOrder(payload, flag) {
+    if(!token) {
+      history.push('/login');
+      return;
+    }
+    console.log(payload);
+    const res = await fetch(`${apiUrl}/orders/${flag}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Authorization:`Bearer ${token}`}, body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    console.log(data.data);
+    localStorage.setItem('order', JSON.stringify(data.data));
+    localStorage.setItem('orderId', data.data.id);
+    // dispatch({
+    //     type: "ADD_TO_BASKET",
+    //     item: {
+    //       id,
+    //       count,
+    //       name,
+    //       image,
+    //       price,
+    //       rating,
+    //     },
+    //   });
+}
     const addToBasket = () => {
         // dispatch the item into the data layer
+        let payload = {productId: id, quantity: 1};
+        console.log('adding to cart');
         dispatch({
-        type: "ADD_TO_BASKET",
-        item: {
-            id,
-            count,
-            title,
-            image,
-            price,
-            rating,
-        },
+            type: "ADD_TO_BASKET",
+            item: {
+                id,
+                count,
+                title,
+                image,
+                price,
+                rating,
+            },
         });
+        makeOrder(payload, 'add');
     };
 
     const reduceFromBasket = () => {
         // remove the item from the basket
+        let payload = {productId: id, quantity: 1};
+        console.log('reducing in cart');
         dispatch({
             type: 'REDUCE_FROM_BASKET',
             id: id,
         })
+        makeOrder(payload, 'reduce');
     }
 
     const removeFromBasket = () => {
         // remove the item from the basket
+        let payload = {productId: id, quantity: 1};
+        makeOrder(payload, 'remove');        
+        console.log('removing from cart');
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             id: id,
@@ -48,8 +87,7 @@ const [{ basket }, dispatch] = useStateValue();
             <div className='checkoutProduct__info'>
                 <p className='checkoutProduct__title'>{title}</p>
                 <p className="checkoutProduct__price">
-                    <small>$</small>
-                    <strong>{price}</strong>
+                    <strong>N{price}</strong>
                 </p>
                 <div className="checkoutProduct__rating">
                     {Array(rating)
@@ -59,12 +97,12 @@ const [{ basket }, dispatch] = useStateValue();
                     ))}
                 </div>
                     {!hideButton && (<p className="checkoutProduct__count">
-                        <span onClick={reduceFromBasket}>-</span>
+                        <span style={{cursor: 'pointer'}} onClick={reduceFromBasket}>-</span>
                         <span>{count}</span>
-                        <span onClick={addToBasket}>+</span>
+                        <span style={{cursor: 'pointer'}} onClick={addToBasket}>+</span>
                     </p>)}
                 {!hideButton && (
-                    <button onClick={removeFromBasket}>Remove from Basket</button>
+                    <button style={{cursor: 'pointer'}} onClick={removeFromBasket}>Remove from Basket</button>
                 )}
             </div>
         </div>

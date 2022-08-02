@@ -4,9 +4,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: #131921; */
-    background-color: lightgray;
-    color: #131921;
+    background-color: #131921;
+    color: #fff;
     position: fixed;
     z-index: 100;
     box-sizing: border-box;
@@ -15,15 +14,15 @@
 }
 
 .footer__logo {
-    color: #131921;
+    /* color: #131921; */
     font-size: 1em;
     font-weight: 600;
     align-self: center;
   }
 
-.footer a {
+/* .footer a {
     color: #131921;
-  }
+  } */
 
 .footer p a {
       display: flex;
@@ -32,4 +31,5 @@
 
 .footer p span{
       font-family: cursive;
+      color: #fff;
     }

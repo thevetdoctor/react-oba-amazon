@@ -7,7 +7,7 @@ import { useStateValue } from "./StateProvider";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
 
-function Home() {
+function Klubb() {
   const [{ stock, basket }, dispatch] = useStateValue();
 
   let ids = [];
@@ -53,4 +53,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Klubb;

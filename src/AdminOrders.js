@@ -21,7 +21,7 @@ function  Orders() {
             return;
           }
           try {
-            const res = await fetch(`${apiUrl}/orders/user`, {
+            const res = await fetch(`${apiUrl}/orders`, {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json', Authorization:`Bearer ${token}`},
             });
@@ -45,13 +45,17 @@ function  Orders() {
 
     return (
         <div className="orders">
-            {/* <img
+            <img
             className="checkout__ad"
             src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
             alt=""
-            /> */}
-               
-        <h1>Your Orders</h1>
+            />
+             <div className="tabs">
+                <span onClick={() => history.push('/dashboard')} className="active">DASHBOARD</span>
+                <span onClick={() => history.push('/adminorders')} className="">ORDERS</span>
+                <span onClick={() => history.push('/waiterregister')} className="">REGISTER A WAITER</span>
+            </div>   
+            <h1 className="order__list__header">Orders</h1>
 
             <div className="orders__order">
                 {orders?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((order, idx) => (

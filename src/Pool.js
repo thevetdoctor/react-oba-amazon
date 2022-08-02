@@ -2,14 +2,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect } from "react";
-import "./Home.css";
+// import "./Home.css";
 import data from './data';
 import Product from "./Product";
 import { useStateValue } from "./StateProvider";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
 
-function Home() {
+function Pool() {
   const [{ stock, basket }, dispatch] = useStateValue();
 
   let ids = [];
@@ -17,11 +17,11 @@ function Home() {
   const [initialTab, setInitialTab] = useState('soft');
 
   const checkBasket = basketIds.map(x => x.id);
-  console.log(checkBasket);
   
   useEffect(() => {
+    console.log(checkBasket);
     const showTab = (val) => {
-      const searchResults = data.data.filter(x => x.type.toLowerCase().includes(val.toLowerCase()));
+      const searchResults = stock.filter(x => x.type.toLowerCase().includes(val.toLowerCase()));
       // console.log(val, searchResults)
   
       dispatch({
@@ -29,11 +29,14 @@ function Home() {
           searchResults
         });
     }
+    console.log(initialTab);
     showTab(initialTab)
-  }, [initialTab]);
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+  }, []);
+
   return (
     <div className="home">
       <div className="home__container">
@@ -43,7 +46,7 @@ function Home() {
           alt=""
         />
         <Tabs />
-        <Tab />
+        {/* <Tab /> */}
         <div className="home__row">
           {stock.map((item, idx) => (
               <Product
@@ -63,4 +66,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Pool;

@@ -9,16 +9,18 @@ function Order({order}) {
   
     return (
         <div className="order">
-            <h2>Order</h2>
+            <h2>Order ID: {order.id.slice(0, 8)}</h2>
 
             <p>
-                {moment.unix(order.createdAt).format("MMMM Do YYYY, h: mma")}
+                {moment(order.createdAt).format("MMMM Do YYYY, h: mma")}
             </p>
             <p>
-                <small className="oder__id">{order.id}</small>
+                Status: {order.status}
             </p>
-                {order.products?.map(item => (
+           
+                {order.products?.map((item, idx) => (
                     <CheckoutProduct
+                        key={idx}
                         id={item.id}
                         name={item.name}
                         image={item.imageUrl}
@@ -32,7 +34,7 @@ function Order({order}) {
                         <h3 className="order__total">Order Total: {value}</h3>
                       )}
                       decimalScale={2}
-                      value={order.totalValue / 100}
+                      value={order.totalValue}
                       displayType={"text"}
                       thousandSeparator={true}
                       prefix={"N"}

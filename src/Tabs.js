@@ -1,14 +1,12 @@
 import React from 'react';
-import data from './data';
 import './Tabs.css';
 import { useStateValue } from "./StateProvider";
+// import data from './data';
 
 export default function Tabs() {
     const [, dispatch] = useStateValue();
     const showTab = (val) => {
-        const searchResults = data.data.filter(x => x.type.toLowerCase().includes(val.toLowerCase()));
-        // console.log(val, searchResults)
-    
+      const searchResults = JSON.parse(localStorage.getItem('products')).filter(x => x.type.toLowerCase().includes(val.toLowerCase()));
         dispatch({
             type: "SEARCH_STOCK",
             searchResults

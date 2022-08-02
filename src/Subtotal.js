@@ -47,7 +47,7 @@ function Subtotal() {
         value={discountStatus ? getBasketTotal(basket) * 0.90 : getBasketTotal(basket)}
         displayType={"text"}
         thousandSeparator={true}
-        prefix={"$"}
+        prefix={"N"}
       />
 
       <button onClick={() => history.push("/payment")} disabled={!basket?.length}>Proceed to Checkout</button>

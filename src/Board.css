@@ -1,33 +1,34 @@
 .board {
-    margin-top: '.1em'; 
-    justify-content: 'center';
-    /* margin: 'auto'; */
-    width: '100%';
+    margin-top: .1em; 
+    justify-content: center;
+    margin: .1em auto 8em auto;
+    width: 60%;
+    height: 980px;
 }
 
 .side-a {
-    display: 'flex';
-    flex-flow: 'row';
+    display: flex;
+    flex-flow: row;
 }
 
 .side-b {
-    display: 'flex';
-    flex-flow: 'column';
+    display: flex;
+    flex-flow: column;
 }
 
-img {
+.board_img {
     width: 100%;
 }
 
 @media screen and (max-width: 450px) {
     .board {
-        margin-top: '15em'; 
-        justify-content: 'center';
-        margin: 'auto';
-        width: '100%';
+        margin-top: 15em; 
+        justify-content: center;
+        margin: auto;
+        width: 100%;
     }
     .side-a {
-        display: 'flex';
+        display: flex;
         flex-flow: column;
     }
   }
